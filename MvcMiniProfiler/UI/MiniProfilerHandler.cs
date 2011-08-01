@@ -1,4 +1,4 @@
-﻿using System;
+ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web;
@@ -34,6 +34,19 @@ namespace MvcMiniProfiler.UI
             showChildrenTime: {showChildren},
             maxTracesToShow: {maxTracesToShow}
         }});
+        $('.profiler-results').css({ position: 'relative' }).wrap('<div class=""profiler_wrapper closed"" style=""position:fixed; left: 0; top: 10px;""></div>');
+                    var wrapper = $('.profiler_wrapper')
+                    var toggleView = function (animate) {
+                        wrapper.animate({ left: wrapper.hasClass('closed') ? 0 : -parseInt(wrapper.outerWidth()) }, animate ? 300 : 0);
+                        wrapper.toggleClass('closed');
+                    };
+                    $('.profiler-results').parent()
+                        .append('<div class=""profiler_toggle"" style=""position: fixed; cursor: pointer; top: 0px; left: 0px; background-color: #000; width: 10px; height: 10px;""></div>')
+                        .css({ left: '-71px' })
+                        .find('.profiler_toggle')
+                            .click(function () {
+                                toggleView(true);
+                            });
     }});
 </script>";
             var result = "";
